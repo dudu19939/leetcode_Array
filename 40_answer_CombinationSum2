@@ -1,0 +1,50 @@
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Array.sort(candidates);
+        if(candidates.length == 0 || candidate[0] > target)
+            return result;
+        
+        int len = 0;
+        //若candidates数组中有target，则将其添加到result中
+        for(int i = 0; i < candidates.length; i++){
+            if(candidates[i] == target){
+                List<Integer> list = new ArrayList<Integer>();
+                list.add（target）;
+                result.add(list);
+                list.clear();
+                break;
+            }             
+        }
+        //把candidates数组中小于target的全部放到一个新的数组里面,并且要去除重复
+        for(int i= 0; i < candidates.length && candidates[i] < target;i++)
+        {
+            if(i == 0) 
+            {
+                candidates[len] = candidates[i];
+                len++;
+            }
+            if(i != 0 && candidates[i] > candidates[i-1])
+                candidates[len++] = candidates[i];
+        }
+        
+        //对小于target的每个数搜索解
+        for(int i = 0; i < len; i++)
+        {
+            int b = new int[len - i -1];
+            arraycopy(candidates, i+1, b, 0, len-i-1);
+            List<List<Integer>> PartResult = new ArrayList<List<Integer>>();
+            PartResult = combinationSum2(b,target - candidates[i]);
+            if(Partresult.size() > 0){
+                for(int j = 0; i < PartResult.size(); j++ ){
+                    List<Integer> list = new ArrayList<Integer>();
+                    list.add(candidates[i]);
+                    list.addAll（PartResult.get(j)）;
+                    result.add(list);
+                }
+            }
+
+        }
+        return result;
+    }
+}
