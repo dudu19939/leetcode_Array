@@ -22,10 +22,7 @@
             }    
               
             for(int i = 0; i < len; i++){//循环搜索符合要求的数字组合  
-                int[] b = Arrays.copyOfRange(a, i, len);//不含>=t数据的新数组  
-                if(a[i] > t)//如果a[i]，肯定以后的数据已不符合，返回  
-                    break;  
-                //相等于已经有了一个值a[0]了      
+                int[] b = Arrays.copyOfRange(a, i, len);//不含>=t数据的新数组                  
                 List<List<Integer>> newList = new ArrayList<List<Integer>>();  
                 newList = combinationSum(b,t-a[i]);  
                 if(newList.size() > 0){//里面有符合要求的数据  
