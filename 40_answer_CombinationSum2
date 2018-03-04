@@ -1,8 +1,8 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        Array.sort(candidates);
-        if(candidates.length == 0 || candidate[0] > target)
+        Arrays.sort(candidates);
+        if(candidates.length == 0 || candidates[0] > target)
             return result;
         
         int len = 0;
